@@ -248,20 +248,20 @@ return [
         ],
         [
             'text'        => 'Categoria',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-user',
+            'url'         => 'categorias',
+            'icon'        => 'fas fa-grip-horizontal',
             'label_color' => 'success',
         ],
         [
             'text'        => 'Productos',
             'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-user',
+            'icon'        => 'fas fa-video',
             'label_color' => 'success',
         ],
         [
             'text'        => 'Pedidos',
             'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-user',
+            'icon'        => 'fas fa-shopping-cart',
             'label_color' => 'success',
         ],
     
@@ -419,5 +419,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

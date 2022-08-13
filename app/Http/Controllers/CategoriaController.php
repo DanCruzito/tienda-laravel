@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Http\Requests\StoreCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
+//use App\Models\Producto;
 
 class CategoriaController extends Controller
 {
@@ -16,6 +17,8 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+        $categorias = Categoria::all();
+        return view('admin.categorias.index',compact('categorias'));
     }
 
     /**
@@ -26,6 +29,7 @@ class CategoriaController extends Controller
     public function create()
     {
         //
+        return view('admin.categorias.create');
     }
 
     /**
@@ -36,7 +40,16 @@ class CategoriaController extends Controller
      */
     public function store(StoreCategoriaRequest $request)
     {
-        //
+        $categoria = new Categoria;
+        $categoria->nombre =  $request->nombre;
+        $categoria->save();
+       /**$categoria = Categoria::create([
+           'nombre' => $request->nombre
+        ]);*/
+        /**$categoria = Categoria::create($request->all());*/
+
+        return redirect('categorias');
+
     }
 
     /**
@@ -47,7 +60,8 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+      //  $productos = Producto::where('categoria_id',$categoria->id)->get();
+        return view('admin.categorias.show',compact('categoria'));
     }
 
     /**
@@ -58,7 +72,10 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+       // dd($categoria);
+       //enviamos a la vista editar(formulario de edición)
+       return view('admin.categorias.edit',compact('categoria'));
+
     }
 
     /**
@@ -70,7 +87,9 @@ class CategoriaController extends Controller
      */
     public function update(UpdateCategoriaRequest $request, Categoria $categoria)
     {
-        //
+        $validated = $request->validated();
+        $categoria->update($request->all());
+        return redirect('/categorias')->with('editar','ok');
     }
 
     /**
@@ -81,6 +100,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        return redirect('categorias')->with('eliminar','ok');
     }
 }
