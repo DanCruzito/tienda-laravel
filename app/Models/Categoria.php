@@ -12,7 +12,8 @@ class Categoria extends Model
     use SoftDeletes;
 //Asignación masiva
     protected $fillable = [
-      'nombre'
+      'nombre',
+      'imagen'
     ];
 
     //Relación 1 a muchos Categoria-Producto

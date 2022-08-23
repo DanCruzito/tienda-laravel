@@ -15,21 +15,24 @@
         <div class="card-body">
             @if ($errors->any())
                 <div class="alert alert-danger">
-                     <ul>
+                    <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
-                     </ul>
+                    </ul>
                 </div>
             @endif
-            <form action="{{ route('categorias.store')}}" method="POST">
+            <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nombre de la Categoría</label>
                     <input type="text" class="form-control" name="nombre">
                 </div>
+                <div class="form-group">
+                    <label>Subir Imagen</label>
+                    <input type="file" class="form-control-file" name="imagen" accept="image/*">
+                </div>
 
-                
                 <button type="submit" class="btn btn-primary">Agregar</button>
             </form>
         </div>
@@ -38,6 +41,11 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        .card{
+           background-color: blue;
+        }
+    </style>
 @stop
 
 @section('js')

@@ -42,6 +42,10 @@ class CategoriaController extends Controller
     {
         $categoria = new Categoria;
         $categoria->nombre =  $request->nombre;
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen')->store('categorias');
+        $categoria->imagen = $imagen;
+        }
         $categoria->save();
        /**$categoria = Categoria::create([
            'nombre' => $request->nombre
@@ -88,7 +92,13 @@ class CategoriaController extends Controller
     public function update(UpdateCategoriaRequest $request, Categoria $categoria)
     {
         $validated = $request->validated();
-        $categoria->update($request->all());
+       // $categoria->update($request->all());
+       $categoria->nombre =  $request->nombre;
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen')->store('categorias');
+        $categoria->imagen = $imagen;
+        }
+        $categoria->update();
         return redirect('/categorias')->with('editar','ok');
     }
 

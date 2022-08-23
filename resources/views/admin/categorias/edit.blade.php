@@ -22,14 +22,18 @@
                      </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route('categorias.update',$categoria)}}" >
+            <form method="POST" action="{{ route('categorias.update',$categoria)}}" enctype="multipart/form-data" >
                 @csrf
                 @method('PUT')
+                <img width="300" height="300" src="{{ Storage::url($categoria->imagen)}}" class="img-fluid" alt="...">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Nombre de la Categoría</label>
                     <input type="text" class="form-control" value="{{$categoria->nombre}}" name="nombre">
                 </div>
-
+                <div class="form-group">
+                    <label>Subir Imagen</label>
+                    <input type="file" class="form-control-file" name="imagen" accept="image/*">
+                </div>
                 
                 <button type="submit" class="btn btn-primary">Actualizar</button>
             </form>

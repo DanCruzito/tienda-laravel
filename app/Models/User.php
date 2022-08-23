@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -19,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'imagen',
         'email',
         'password',
     ];
@@ -45,5 +47,11 @@ class User extends Authenticatable
     //Relación 1 a muchos User-Pedido
     public function pedidos(){
         return $this->hasMany(Pedido::class);
+    }
+
+    public function adminlte_image(){
+        $user = Auth::user();
+        $foto = $user->imagen;
+        return $foto;
     }
 }

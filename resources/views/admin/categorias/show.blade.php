@@ -36,13 +36,14 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col" colspan="5">Productos</th>
+                        <th scope="col" colspan="6">Productos</th>
                     </tr>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Imagen</th>
                         <th scope="col">Precio</th>
                     </tr>
                 </thead>
@@ -53,6 +54,7 @@
                         <td>{{ $producto->nombre }}</td>
                         <td>{{ $producto->descripcion }}</td>
                         <td>{{ $producto->stock }}</td>
+                        <td><img width="60" height="60" src="{{ Storage::url($producto->imagen)}}" alt=""></td>
                         <td>{{ $producto->precio }} Bs.</td>
                     </tr>
                     @endforeach

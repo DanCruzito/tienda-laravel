@@ -31,7 +31,12 @@
                         <tr>
                             <th scope="row">{{ $categoria->id }}</th>
                             <td>{{ $categoria->nombre }}</td>
-                            <td><img width="50" height="50" src="{{ asset('/img/livewire.png') }}" alt="">
+                            @if ($categoria->imagen)
+                            <td><img width="50" height="50" src="{{ Storage::url($categoria->imagen) }}" alt="">
+                            @else
+                            <td><img width="50" height="50" src="{{ asset('img/livewire.png') }}" alt="">   
+                            @endif
+                            
                             </td>
                             <td>
                                 <form action="{{ route('categorias.destroy', $categoria) }}" method="POST"
